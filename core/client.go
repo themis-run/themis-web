@@ -10,7 +10,7 @@ import (
 var client *themisclient.Client
 var one sync.Once
 
-func GetThemisClient() (*themisclient.Client, error) {
+func GetThemisClient() *themisclient.Client {
 	var err error
 	one.Do(func() {
 		serverName, address := conf.GetThemisServer()
@@ -23,5 +23,9 @@ func GetThemisClient() (*themisclient.Client, error) {
 
 		client, err = themisclient.NewClient(config)
 	})
-	return client, err
+	if err != nil {
+		panic(err)
+	}
+
+	return client
 }
