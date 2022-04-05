@@ -24,3 +24,17 @@ func (s *ServiceAPI) FindAllService(c *gin.Context) {
 		ServiceCount: len(services),
 	})
 }
+
+func (s *ServiceAPI) FindInstance(c *gin.Context) {
+	serviceName := c.Param("serviceName")
+	instances, err := s.handler.FindInstance(serviceName)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, err)
+		return
+	}
+
+	c.JSON(http.StatusOK, model.InstancesResponse{
+		InstanceList: instances,
+		Count:        len(instances),
+	})
+}

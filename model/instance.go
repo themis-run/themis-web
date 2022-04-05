@@ -11,3 +11,8 @@ type Instance struct {
 	IsHealthy   bool              `json:"is_healthy"`
 	Meta        map[string]string `json:"meta"`
 }
+
+type InstancesResponse struct {
+	InstanceList []Instance `json:"instances"`
+	Count        int        `json:"instance_count"`
+}
