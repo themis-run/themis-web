@@ -1,0 +1,4 @@
+port: 8080
+themis:
+  server_name: aaaa
+  address: 10.12.12.2:8080
