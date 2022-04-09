@@ -19,10 +19,11 @@ func (s *ServiceAPI) FindAllService(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, model.ServiceResponse{
-		ServiceList:  services,
-		ServiceCount: len(services),
-	})
+	c.JSON(http.StatusOK, model.Success(
+		model.ServiceResponse{
+			ServiceList:  services,
+			ServiceCount: len(services),
+		}))
 }
 
 func (s *ServiceAPI) FindInstance(c *gin.Context) {
@@ -33,8 +34,9 @@ func (s *ServiceAPI) FindInstance(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, model.InstancesResponse{
-		InstanceList: instances,
-		Count:        len(instances),
-	})
+	c.JSON(http.StatusOK, model.Success(
+		model.InstancesResponse{
+			InstanceList: instances,
+			Count:        len(instances),
+		}))
 }

@@ -71,6 +71,7 @@ func (s *ServiceHandler) FindInstance(serviceName string) ([]model.Instance, err
 			IP:          v.IP,
 			Port:        v.Port,
 			IsHealthy:   v.IsHealthy,
+			CreateTime:  v.CreateTime,
 			Meta:        m,
 		})
 	}
