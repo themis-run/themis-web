@@ -1,13 +1,14 @@
 package conf
 
 import (
+	"fmt"
 	"io/ioutil"
 
 	"gopkg.in/yaml.v3"
 )
 
 type Config struct {
-	Port   int           `yaml:"Port"`
+	Port   int           `yaml:"port"`
 	Themis *ThemisConfig `yaml:"themis"`
 }
 
@@ -27,6 +28,10 @@ func Setup() {
 	if err := yaml.Unmarshal(f, config); err != nil {
 		panic(err)
 	}
+}
+
+func Port() string {
+	return fmt.Sprintf(":%d", config.Port)
 }
 
 func GetThemisServer() (string, string) {
