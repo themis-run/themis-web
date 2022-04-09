@@ -12,6 +12,12 @@ type KeyValueAPI struct {
 	handler *handle.KeyValueHandler
 }
 
+func NewKeyValueAPI() *KeyValueAPI {
+	return &KeyValueAPI{
+		handler: handle.NewKeyValueHandler(),
+	}
+}
+
 func (k *KeyValueAPI) ListKV(c *gin.Context) {
 	res, err := k.handler.ListKV()
 	if err != nil {

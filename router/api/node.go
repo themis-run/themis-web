@@ -12,6 +12,12 @@ type NodeAPI struct {
 	handler *handle.NodeHandler
 }
 
+func NewNodeAPI() *NodeAPI {
+	return &NodeAPI{
+		handler: handle.NewNodeHandler(),
+	}
+}
+
 func (n *NodeAPI) NodeInfo(c *gin.Context) {
 	leader, nodes, err := n.handler.NodeInfoList()
 	if err != nil {

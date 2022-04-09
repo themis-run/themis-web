@@ -12,6 +12,12 @@ type ServiceAPI struct {
 	handler *handle.ServiceHandler
 }
 
+func NewServiceAPI() *ServiceAPI {
+	return &ServiceAPI{
+		handler: handle.NewServiceHandler(),
+	}
+}
+
 func (s *ServiceAPI) FindAllService(c *gin.Context) {
 	services, err := s.handler.FindAllService()
 	if err != nil {
