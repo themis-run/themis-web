@@ -11,6 +11,11 @@ type Node struct {
 }
 
 type NodeInfoResponse struct {
-	LeaderName string  `json:"leader_name"`
-	NodeList   []*Node `json:"servers"`
+	LeaderName string `json:"leader_name"`
+	NodeList   []Node `json:"servers"`
+}
+
+type NodeKeyValueResponse struct {
+	Name         string     `json:"name"`
+	KeyValueList []KeyValue `json:"kv"`
 }
