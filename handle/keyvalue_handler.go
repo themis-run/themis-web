@@ -8,6 +8,8 @@ import (
 	"go.themis.run/themisclient"
 )
 
+var timeLayout = "2006-01-02 15:04:05"
+
 type KeyValueHandler struct {
 	client *themisclient.Client
 }
@@ -29,7 +31,7 @@ func (k *KeyValueHandler) ListKV() ([]model.KeyValue, error) {
 		res = append(res, model.KeyValue{
 			Key:        kv.Key,
 			Value:      string(kv.Value),
-			CreateTime: time.UnixMilli(kv.CreateTime),
+			CreateTime: transforTimestamp(kv.CreateTime),
 			TTL:        time.Duration(kv.Ttl),
 		})
 	}
@@ -39,4 +41,9 @@ func (k *KeyValueHandler) ListKV() ([]model.KeyValue, error) {
 
 func (k *KeyValueHandler) SetKV(kv model.KeyValue) error {
 	return k.client.Set(kv.Key, kv.Value)
+}
+
+func transforTimestamp(timestamp int64) string {
+	t := time.UnixMilli(timestamp)
+	return t.Format(timeLayout)
 }

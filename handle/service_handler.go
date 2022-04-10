@@ -2,6 +2,7 @@ package handle
 
 import (
 	"encoding/json"
+	"log"
 
 	"go.themis.run/themis-web/core"
 	"go.themis.run/themis-web/model"
@@ -60,9 +61,11 @@ func (s *ServiceHandler) FindInstance(serviceName string) ([]model.Instance, err
 	res := make([]model.Instance, 0)
 	for _, v := range instances {
 		m := make(map[string]string)
-		err := json.Unmarshal(v.MetaData, &m)
-		if err != nil {
-			return nil, err
+		if v.MetaData != nil {
+			err := json.Unmarshal(v.MetaData, &m)
+			if err != nil {
+				log.Println(err)
+			}
 		}
 
 		res = append(res, model.Instance{
@@ -71,7 +74,7 @@ func (s *ServiceHandler) FindInstance(serviceName string) ([]model.Instance, err
 			IP:          v.IP,
 			Port:        v.Port,
 			IsHealthy:   v.IsHealthy,
-			CreateTime:  v.CreateTime,
+			CreateTime:  v.CreateTime.Format(timeLayout),
 			Meta:        m,
 		})
 	}

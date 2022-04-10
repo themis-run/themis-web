@@ -54,7 +54,7 @@ func (n *NodeHandler) GetKeyValueByNodeName(name string) ([]model.KeyValue, erro
 		kvs = append(kvs, model.KeyValue{
 			Key:        kv.Key,
 			Value:      string(kv.Value),
-			CreateTime: time.UnixMilli(kv.CreateTime),
+			CreateTime: transforTimestamp(kv.CreateTime),
 			TTL:        time.Duration(kv.Ttl),
 		})
 	}

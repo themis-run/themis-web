@@ -1,4 +1,4 @@
 port: 8080
 themis:
   server_name: aaaa
-  address: 139.155.48.101:52112
+  address: localhost:52001

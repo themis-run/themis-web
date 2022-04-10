@@ -9,12 +9,12 @@ func Init() *gin.Engine {
 	r := gin.Default()
 
 	service := api.NewServiceAPI()
-	r.GET("/service", service.FindAllService)
-	r.GET("/service/:serviceName", service.FindInstance)
+	r.GET("/services", service.FindAllService)
+	r.GET("/services/:serviceName", service.FindInstance)
 
 	node := api.NewNodeAPI()
 	r.GET("/node", node.NodeInfo)
-	r.GET("/node/:node_name", node.KeyValueByNode)
+	r.GET("/node/kv/:node_name", node.KeyValueByNode)
 
 	keyvalue := api.NewKeyValueAPI()
 	r.GET("/kv", keyvalue.ListKV)
