@@ -4,7 +4,7 @@ go 1.17
 
 require (
 	github.com/gin-gonic/gin v1.7.7
-	go.themis.run/themisclient v0.0.0-20220405110603-c7192dc60406
+	go.themis.run/themisclient v0.0.0-20220409104136-0d57a5cdeff5
 	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
 )
 

@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -37,7 +36,6 @@ func (k *KeyValueAPI) SetKV(c *gin.Context) {
 	}
 
 	if err := k.handler.SetKV(kv); err != nil {
-		fmt.Println(err)
 		c.AbortWithStatusJSON(http.StatusBadRequest, err)
 		return
 	}
